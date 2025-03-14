@@ -7,12 +7,14 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv()  # Load environment variables
 
-# Get Google Credentials from .env
 google_credentials_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
 
-# Convert JSON string to dictionary
+if google_credentials_json is None:
+    raise ValueError("GOOGLE_CREDENTIALS environment variable is not set!")
+
+# Convert the environment variable string to a JSON dictionary
 google_credentials = json.loads(google_credentials_json)
 
 # Google Sheets API Authentication
